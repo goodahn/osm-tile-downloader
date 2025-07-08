@@ -28,6 +28,7 @@ Docker를 통해 설정된 로컬 타일 서버와 함께 작동하도록 설계
 1.  **로컬 타일 서버 설정 (최초 1회):**
 
     이 스크립트는 대한민국의 최신 OpenStreetMap 데이터를 다운로드하고 지도 타일을 로컬에서 제공하는 Docker 컨테이너를 시작합니다.
+    - 다른 나라의 타일 이미지를 다운로드 받고 싶다면 setup.sh를 수정해서 원하는 pbf 파일을 설치해야 합니다.
 
     ```bash
     bash setup.sh
@@ -46,13 +47,16 @@ Docker를 통해 설정된 로컬 타일 서버와 함께 작동하도록 설계
     MIN_ZOOM=16
     MAX_ZOOM=20
 
-    # 2. 다운로드할 영역의 경계 상자 (예: 대한민국 대전)
+    # 2. 다운로드할 영역 (예: 대한민국 대전)
+    ## 타일 이미지를 다운로드 할 영역을 쉽게 찾고 싶다면 [bboxfinder.com](bboxfinder.com) 같은 툴을 이용해보세요.
     MIN_LON=127.3
     MAX_LON=127.5
     MIN_LAT=36.3
     MAX_LAT=36.4
 
     # 3. 타일 서버 URL 및 출력 디렉토리
+    ## 로컬 서버 뿐만 아니라 https://tile.openstreetmap.org/{z}/{x}/{y}.png 과 같은 퍼블릭 타일 서버를 사용할 수도 있습니다.
+    ## +++ 사용량과 연관된 퍼블릭 타일 서버의 정책을 주의하셔야 합니다.
     TILE_SERVER_URL="http://localhost:28080/tile/{z}/{x}/{y}.png"
     OUTPUT_DIR="./map_tiles"
 

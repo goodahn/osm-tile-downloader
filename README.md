@@ -28,7 +28,7 @@ Before you begin, ensure you have the following installed:
 1.  **Set up the local tile server (one-time setup):**
 
     This script will download the latest OpenStreetMap data for South Korea and start a Docker container to serve the map tiles locally.
-
+    - If you want to download tiles of other country, you need to modify setup.sh and download the proper pbf file.
     ```bash
     bash setup.sh
     ```
@@ -40,19 +40,22 @@ Before you begin, ensure you have the following installed:
 1.  **Configure the download parameters:**
 
     Open `download_tiles.sh` and modify the following variables to define the desired map area and zoom levels:
-
     ```bash
     # 1. Zoom level range to download
     MIN_ZOOM=16
     MAX_ZOOM=20
 
     # 2. Bounding box for the area to download (Example: Daejeon, South Korea)
+    ## To find the bounding box for your area of interest, you can use a tool like [bboxfinder.com](bboxfinder.com).
     MIN_LON=127.3
     MAX_LON=127.5
     MIN_LAT=36.3
     MAX_LAT=36.4
 
     # 3. Tile server URL and output directory
+    ## You can also use public tile servers. For example, to use the standard OpenStreetMap server,
+    ## change the URL to https://tile.openstreetmap.org/{z}/{x}/{y}.png.
+    ## Note: Be sure to respect the tile usage policy of any public server you use.
     TILE_SERVER_URL="http://localhost:28080/tile/{z}/{x}/{y}.png"
     OUTPUT_DIR="./map_tiles"
 
